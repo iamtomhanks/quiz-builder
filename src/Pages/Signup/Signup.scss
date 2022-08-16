@@ -1,0 +1,5 @@
+@import "mixins";
+
+.signup-container {
+	@include auth-form;
+}

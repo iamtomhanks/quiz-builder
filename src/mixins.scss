@@ -1,0 +1,55 @@
+@mixin question-container {
+	background: linear-gradient(to right bottom, rgb(0, 127, 255), rgb(0, 89, 178) 120%);
+	margin-bottom: 40px;
+	border-radius: 6px;
+	padding: 20px;
+	color: #fff;
+}
+
+@mixin question-title {
+	color: #fff;
+	font-size: 20px;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+
+@mixin answer-container {
+	margin-bottom: 10px;
+	background: #132f4c;
+	padding: 10px;
+	border-radius: 6px;
+}
+
+@mixin answer-text {
+	color: #fff;
+	font-size: 16px;
+}
+
+@mixin auth-form {
+	.form-container {
+		display: flex;
+		flex-direction: column;
+		width: 400px;
+		margin: 0 auto;
+	}
+
+	.MuiInputBase-root {
+		margin-bottom: 20px;
+	}
+
+	.error {
+		color: red;
+		margin-top: 20px;
+	}
+
+	.text-field {
+		input {
+			background: #fff;
+			border-radius: 3px;
+		}
+	}
+
+	.MuiButtonBase-root.login-btn-disabled {
+		background-color: grey;
+	}
+}

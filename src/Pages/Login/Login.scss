@@ -1,0 +1,5 @@
+@import "mixins";
+
+.login-container {
+	@include auth-form;
+}

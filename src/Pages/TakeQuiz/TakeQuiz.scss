@@ -1,0 +1,38 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+.take-quiz-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+
+	.title {
+		color: $blue1;
+	}
+
+	.question-container {
+		@include question-container;
+	}
+
+	.question-title {
+		@include question-title;
+	}
+
+	.answer-container {
+		@include answer-container;
+		cursor: pointer;
+
+		&.selected {
+			background: green;
+			font-weight: bold;
+		}
+	}
+
+	.answer-text {
+		@include answer-text;
+	}
+
+	.multi-answer-alert {
+		margin-bottom: 10px;
+	}
+}
