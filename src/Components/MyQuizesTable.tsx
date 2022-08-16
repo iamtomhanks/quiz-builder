@@ -11,14 +11,15 @@ import { Button } from "@mui/material";
 import { displayPermaLink } from "Utils";
 import { Link } from "react-router-dom";
 import { getRoute } from "Constants";
+import { useDeleteQuiz } from "Hooks";
 
 interface QuizRowProps {
 	quiz: Quiz;
-	handleDelete: (id: string) => void;
 }
 
-const QuizRow = ({ quiz, handleDelete }: QuizRowProps) => {
+const QuizRow = ({ quiz }: QuizRowProps) => {
 	const { id, title, permalink } = quiz;
+	const { mutate: deleteQuiz, isLoading: isDeleting } = useDeleteQuiz();
 
 	return (
 		<TableRow key={id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
@@ -29,7 +30,7 @@ const QuizRow = ({ quiz, handleDelete }: QuizRowProps) => {
 				<Link to={getRoute.quiz(permalink)}>{displayPermaLink(permalink)}</Link>
 			</StyledTableCell>
 			<StyledTableCell align="right">
-				<Button variant="contained" color="error" onClick={() => handleDelete(id)}>
+				<Button variant="contained" color="error" onClick={() => deleteQuiz(id)} disabled={isDeleting}>
 					Delete Quiz
 				</Button>
 			</StyledTableCell>
@@ -53,10 +54,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 interface Props {
 	quizes: Quiz[];
-	handleDelete: (id: string) => void;
 }
 
-const MyQuizesTable = ({ quizes, handleDelete }: Props) => (
+const MyQuizesTable = ({ quizes }: Props) => (
 	<TableContainer component={Paper}>
 		<Table sx={{ minWidth: 600 }}>
 			<TableHead>
@@ -68,7 +68,7 @@ const MyQuizesTable = ({ quizes, handleDelete }: Props) => (
 			</TableHead>
 			<TableBody>
 				{quizes.map((quiz) => (
-					<QuizRow key={quiz.id} quiz={quiz} handleDelete={handleDelete} />
+					<QuizRow key={quiz.id} quiz={quiz} />
 				))}
 			</TableBody>
 		</Table>
