@@ -45,7 +45,7 @@ const Login = () => {
 				>
 					LOGIN
 				</LoadingButton>
-				{error && <div className="error">{error.toString()}</div>}
+				{error && <div className="error">{error.data}</div>}
 			</form>
 		</div>
 	);

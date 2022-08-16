@@ -211,7 +211,7 @@ const CreateQuiz = () => {
 					const questionAnswers = editedQuiz.questions[qI].answers;
 
 					return (
-						<div className="question-container" key={`${qI}-${q.text}`}>
+						<div className="question-container" key={qI}>
 							<input
 								maxLength={MAX_TEXT_LENGTH}
 								type="text"
@@ -221,7 +221,7 @@ const CreateQuiz = () => {
 								onChange={(e) => handleEditQuestionTitle(e.target.value, qI)}
 							/>
 							{questionAnswers?.map((a, aI) => (
-								<div className="answer-container" key={`${qI}-${q.text}-${aI}`}>
+								<div className="answer-container" key={`${qI}-${aI}`}>
 									<input
 										maxLength={MAX_TEXT_LENGTH}
 										type="text"

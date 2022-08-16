@@ -105,6 +105,12 @@ app.post(`/${API_ROUTE['publish-quiz']}`, validate(schemas.newQuiz), async (req:
 app.use(`/${API_ROUTE['delete-quiz']}`, checkAuth);
 app.delete(`/${API_ROUTE['delete-quiz']}`, async (req: Request, res: Response) => {
   const user = await getUserFromToken(req.cookies.token as string);
+
+  if (!user) {
+    res.status(401).send("Unauthorized");
+    return;
+  }
+
   const quizId = req.body.quizId as string;
 
   const quizes = await getQuizes();
@@ -112,6 +118,7 @@ app.delete(`/${API_ROUTE['delete-quiz']}`, async (req: Request, res: Response) =
 
   if (!quizToDelete) {
     res.status(400).send("Quiz not found.");
+    return;
   }
 
   // Check for user and if user owns quiz to delete
