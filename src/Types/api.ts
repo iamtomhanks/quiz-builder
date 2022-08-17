@@ -1,3 +1,5 @@
+import { AxiosError } from "axios";
+
 export enum API_ROUTE {
 	"get-quiz" = "getQuiz",
 	"get-my-quizes" = "getMyQuizes",
@@ -8,3 +10,5 @@ export enum API_ROUTE {
 	"load-user-from-token" = "loadUserFromToken",
 	"logout" = "logout"
 }
+
+export type AxiosErrorType = AxiosError<string>['response'];
